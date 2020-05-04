@@ -18,4 +18,4 @@ b = 2
 let b = 3
 ```
 
-Furthermore const variables are read-only but not immutable.
+Furthermore const variables are read-only but not immutable. The fact that const variables are not immutable implies for example that it is possible to create a const array and then push some new entries into that array.
