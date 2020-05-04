@@ -18,4 +18,4 @@ b = 2
 let b = 3
 ```
 
-
+Furthermore const variables are immutable and read-only.
