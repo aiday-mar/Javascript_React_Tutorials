@@ -18,4 +18,8 @@ b = 2
 let b = 3
 ```
 
-Furthermore const variables are read-only but not immutable. The fact that const variables are not immutable implies for example that it is possible to create a const array and then push some new entries into that array.
+Furthermore const variables are read-only but not immutable. The fact that const variables are not immutable implies for example that it is possible to create a const array and then push some new entries into that array. It is possible to freeze a const rray so that it is no longer possible to push entries to it. This can be done by writing the following code :
+
+```
+Object.freeze({const variable})
+```
