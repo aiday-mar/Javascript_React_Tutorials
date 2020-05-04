@@ -23,3 +23,16 @@ Furthermore const variables are read-only but not immutable. The fact that const
 ```
 Object.freeze({const variable})
 ```
+We can consider an example of how the `const` and the `let` keywords can be used in conjunction, for example when declaring a link to an API : 
+
+```
+const ApiLink = {link}
+
+let options = {
+  method : "POST",
+  headers : {
+    "Content-Type": "application/json"
+  },
+  body : JSON.stringiy({})
+}
+```
