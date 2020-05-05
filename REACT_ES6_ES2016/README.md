@@ -335,3 +335,14 @@ function F(...args){
   console.log(args)
 }
 ```
+# Classes
+
+When you declare a class, then you can also declare a constructor that goes with it, and that has two parameters in it. The constructor gets called when you instantiate the object. When you extend a class and you write the constructor you need to write in the constructor the keyword super to signify that we are calling the constructor of the parent class. In other words 
+
+```
+class ColorGenerator extends Random {
+  constructor({arguments of super class}, {additional arguments}){
+    super({arguments of super class})
+  }
+}
+```
