@@ -86,3 +86,49 @@ class App extends Component {
 ```
 
 **arrow functions**
+
+Arrow functions allow us to simplify code, in the following for example we have two functions which fundamentally do the same thing :
+
+```
+withACallBack('so long', function(options) {
+    return options
+  }
+}
+
+withACallBack('very short', options => options)
+```
+
+The arrow functions though are different to the traditional functions though. Consider the following code :
+
+```
+export function arrowFunctions() {
+  
+  adress : '5th Avenue'
+  
+  const store = {
+    address : '101 Main Street'
+    what: function() {
+      return this.address
+    }
+    arrow : () => {
+      return this.address
+    }
+  }
+}
+```
+
+The `this` keyword in the what function consider the scope of the store object. The `this` keyword of the arrow function considers the scope of the arrowFunctions class and therefore will output ``5th avenue``.
+
+We can apply the knowledge above to our options objects from the beginning and in fact change this object into an arrow function as follows :
+
+```
+const ApiLink = {link}
+
+let options = () => {
+  method : "POST",
+  headers : {
+    "Content-Type": "application/json"
+  },
+  body : JSON.stringiy({})
+}
+```
