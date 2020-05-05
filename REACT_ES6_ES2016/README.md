@@ -346,3 +346,60 @@ class ColorGenerator extends Random {
   }
 }
 ```
+You can also have getters and setters for the functions as follows :
+
+```
+get types() {
+  return this.typeList
+}
+
+set types(types=['hex', 'rgb']){
+  if (Array.isArray(types)) {
+    this.typeList = types.map(type => type)
+  }
+}
+```
+
+# Promises and Async
+
+**promises**
+
+The promises allow us to make asynchronous actions in javascript. Promises are often included in functions. The syntax is as follows :
+
+```
+return new Promise((resolve, reject) => {})
+```
+
+In the above resolve and reject are themselves functions that are invoked inside the promise. Resolve is invoked when the promise has done what it had to done. Reject is invoked when something in the promise has gone wrong. Consider the example below :
+
+```
+function waitUpToThreeSeconds(seconds) {
+  return new Promise ((resolve, reject) => {
+    
+    setTimeout(
+    () => {
+      reject('3 seconds are up ! You asked me to wait for too long!')
+    },
+    3000
+    )
+    
+    setTimeout(
+    () => {
+      resolve('${seconds} seconds are finished!')
+    }, 
+    seconds*1000
+    )
+  }
+}
+```
+In the above we are racing reject and resolve against each other. You can invoke the functions as such :
+
+```
+waitUpToThreeSeconds(2)
+  .then(successMessage => {console.log(successMessage)})
+  .catch(errorMessage => {console.log(errorMessage)})
+```
+When the resolve method is envoked the .then is envoked.
+When the reject method is envoked the .catch is envoked.
+
+**fetch**
