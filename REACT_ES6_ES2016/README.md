@@ -2,6 +2,8 @@
 
 This is a repository containing the notes from the following tutorial I followed on LinkedIn learning : https://www.linkedin.com/learning/react-es6-es2016-and-beyond . 
 
+# Variables and Declarations
+
 **const, let and var**
 
 There are three types of variables in javascript : var, const, let. The differences are shown below.
@@ -130,5 +132,206 @@ let options = () => {
     "Content-Type": "application/json"
   },
   body : JSON.stringiy({})
+}
+```
+Now we study destructuing. This is a simplified way of accessing object attributes as follows : 
+
+```
+const feast = {
+  appetizer : 'spring rolls',
+  entree : 'enchiladas',
+  dessert : 'apple pie',
+  beverages : {
+    wine : 'merlot',
+    water : 'sparkling',
+  }
+}
+
+let {
+  appetizer
+  dessert
+} = feast
+
+console.log('appetizer=', appetizer)
+console.log('dessert=', dessert)
+```
+
+Instead of writing `console.log('feast=', feast.appetizer)` . This method allows us to access deeply nested variables. We can also access the variables in the following way :
+
+```
+let {entree, beverages: {wine}} = feast
+let {water} = feast.beverages
+```
+We can access a deeply nested variable and furthermore rename it using the following syntax :
+
+```
+let {dessert:favorite} = feast
+```
+
+You can also destructure by using an array with no key-value pairs but just values by using the following code :
+
+```
+const horsdoeuvre = ['crab cakes', 'spring rolls', 'fried pickles', 'caviar']
+let [crabCake,,,grossFishEggs] = horsdoeuvre
+console.log(crabCake)  // "crab cake"
+console.log(grossFishEggs)  // "caviar"
+```
+We use the above in an `OnChange` example as follows :
+
+```
+class App extends Component {
+  
+  // but if we want to later reassign a state variable called editor then we need to 
+  // initially inialize it with some empty string for example
+  
+  state = {
+    editor: ""
+  }
+  
+  handleChange = (event) => {
+    let {name, value} = event.target
+    this.setState({
+      [name] : value   
+      //meaning now we access the value in the editor by accessing the name of the editor, 
+      // and you can apply this handleChange function not only to the editor but to other components as well
+    })
+  }
+  
+  render(
+    let {value} = this.state
+    let {handleChange} = this
+    .
+    .
+    .
+    <Editor
+      name="editor"
+      value={value}
+      onChange={handleChange}
+
+  )
+}
+```
+
+In the above the name is always editor but the value changes depending on what is written inside the text area.
+
+# Arguments and Template Literals
+
+**spread operator**
+
+The spread operator allows you to pull appart the parts of an array and make use of them as though they were instead a series or collection of values, rather than a traditional array. You can join array as follows :
+
+```
+const sauces = ['bbq', 'buffaloe', 'honey mustard']
+const dressgings = ['ranch', 'balsamic']
+const superSecretSauce = [...sauces, ...dressings]
+```
+You can also apply the same logic to classes as follows :
+
+```
+const favoriteToppings = {
+  peanutButter : 'crunch'
+  jelly : 'strawberry'
+}
+
+const sandwhich = {
+  breadSlices : 2,
+  ... favoriteToppings
+}
+```
+
+You can also achieve the above effect by writing :
+
+```
+const sameSandwich = Object.assign({breadSlices : 2}, favoriteToppings)
+
+```
+
+The above command essentially takes two objects and combines them into one. In a similar fashion you can pass all the props to a container by writing :
+
+```
+<{component name} {...props}>
+```
+**template literals**
+
+You can initialize a string and pass some variables inside, as follows :
+
+```
+let exclamation = 'woaw'
+let noun = 'jumbo jet'
+
+const madlibs = `"Oh ${exclamation}"! they said. "I've never seen a ${noun} before!"`
+```
+We apply the previous knowledge to a button displayed on the previous HTML page in order to create a new field. We do this as follows :
+
+```
+rules = () => {
+  let {rules} = this.state  // object destructuring will tell us how many rules we have
+  let array = []
+  let fields = ['name', 'begin', 'end']
+  for (let i=0; i < rules; i++){
+    array.push(
+      <Row key={i}> // the i is then the index of the row
+        <Column>
+          {fields.map((field, index) => {
+            return() {
+              <Column key={index}>
+                <RuleLabel>
+                  {field}
+                </RuleLabel>
+                <RuleInput 
+                value={this.state[`${field}${i}`]]
+                onChange={this.handleChange} 
+                name={`${field}${i}`}
+                />
+              </Column>
+            }
+          })}
+        </Column>
+        <StyleInput 
+          value={this.state[`style${i}`]}
+          onChange={this.handleChange}
+          name=(`style${i}`)
+        />
+      </Row>
+    )
+  }
+  
+  return array
+}
+
+newFields() => {
+  this.setState( (prevState) => {
+    let {rules} = prevState
+    lets fields = ['name', 'begin', 'end', 'style']
+    let inputValues = {}
+    fields.forEach( (field) => {
+      inputValues = {
+      ...inputValues,
+      [`${field}${rules}`]:''
+      }
+    })
+    rules++
+    return{
+      rules,
+      ...inputValues
+    }
+  })
+}
+
+render() {
+  let {newFields, rules} = this
+  .
+  .
+  .
+  {rules()} // here then rules will return an array of components
+  <Button onClick={newFields}>
+}
+```
+
+You can use the three dots in the arguments of a function too as follows :
+
+```
+function F(...args){
+  console.log(args)
 }
 ```
