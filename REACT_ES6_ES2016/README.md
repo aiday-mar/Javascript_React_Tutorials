@@ -1,6 +1,10 @@
 # REACT_ES6_ES2016_Tutorial
 
-This is a repository containing the notes from the following tutorial I followed on LinkedIn learning : https://www.linkedin.com/learning/react-es6-es2016-and-beyond . There are three types of variables in javascript : var, const, let. The differences are shown below.
+This is a repository containing the notes from the following tutorial I followed on LinkedIn learning : https://www.linkedin.com/learning/react-es6-es2016-and-beyond . 
+
+**const, let and var**
+
+There are three types of variables in javascript : var, const, let. The differences are shown below.
 
 <img src="https://github.com/aiday-mar/Images/blob/master/Variable_Types_JS.JPG"/>
 
@@ -36,3 +40,49 @@ let options = {
   body : JSON.stringiy({})
 }
 ```
+In order to be able to use a class in another file we need to use the keywords `export` in fron of a class definition. When you specify `default` in front then this means that when you export a class from that file, then this class will be exported by default. One thing to note is that you can not have this `export default const`, however you can specify a `const` class and then `export default` it in another line. On the same page you can export a couple of classes by writing as so : 
+
+```
+export {class1, class2..}
+```
+
+You can also use aliases as so :
+
+```
+import {OneClass} as {AnotherClass}
+```
+
+**CSS Styles**
+
+Now we want to use the ``styled-components`` library in order to add some styles to our page. We can do this for all our classes for example by writing as so:
+
+```
+import styles from `styled-components`
+
+export const Container = styled.div
+  display : flex;
+  flex-direction: row;
+  margin: auto;
+  justify-content: space-around;
+```
+
+Now for example in a javascript class file you can write the below : 
+
+```
+import React, { Component } from `react`
+import { Container } from `./styled`
+
+class App extends Component {
+  render() {
+    return (
+      <Container>
+      .
+      .
+      .
+      </Container>
+    )
+  }
+}
+```
+
+**arrow functions**
