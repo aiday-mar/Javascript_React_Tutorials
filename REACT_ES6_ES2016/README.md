@@ -403,3 +403,44 @@ When the resolve method is envoked the .then is envoked.
 When the reject method is envoked the .catch is envoked.
 
 **fetch**
+
+You can make promise enabled HTTP request without using an outside library by using the following syntax :
+
+```
+fetch(urls, options).then(resp => {...})
+```
+An example is written below :
+
+```
+// response.text() and response.buffer() also avilable
+fetch(shakespeareApi, options()).then(response => response.json()).then(
+  // this is what we have to run on the promise returned by response.json()
+  json => {console.log(json)}
+)
+
+const shakespeareApi = "https:// ..."
+
+let options = () => {
+  return{
+    method : "POST",  // this can be get, post, delete
+    headers : {
+      "Content-Type" : "application/json"  // the headers attached to the request
+    },
+    body : JSON.stringify({
+      query : `{
+        allPoems(
+          first : 1
+          skip : ${rando.randomInt(0, 160)}
+        ) {
+          title
+          author
+          lines
+          text
+        }
+      }`
+    })
+  }
+}
+```
+
+**async and try/catch**
