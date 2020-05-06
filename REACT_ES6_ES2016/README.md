@@ -444,3 +444,51 @@ let options = () => {
 ```
 
 **async and try/catch**
+
+Instead of using a promise you can also use directly the async keyword using the following syntax :
+
+```
+async function() {...}
+try {...} catch(e) {...}
+```
+
+An example is as follows :
+
+```
+export async function getRandomPoem() {
+  try {
+    let result = await fetch(shakespeareApi, options())
+    let response = await result.json()
+    let poem = response.data.allPoems[0]
+    return poem.text
+  }
+  catch (error) {
+    console.log("Error in getRandomPoem", error)
+    throw error
+  }
+}
+```
+
+You can later use the above function as follows :
+
+```
+getRandomText = async() => {
+  try {
+    let poem = await getRandomPoem()
+    this.handleChange({  // where in the below you set manuallly the properties of event
+      target : {
+        name : 'editor',
+        value : poem,
+      }
+    })
+  } catch(error) {
+    console.log("getRandomePoem error", error)
+    
+  }
+}
+
+.
+.
+.
+<Button onClick={getRandomText} />
+```
