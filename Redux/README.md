@@ -81,3 +81,21 @@ export const goal = (state = 10, action) =>
   parseInt(action.payload) : 
   state
 ```
+Consider another reducer as follows :
+
+```
+export const errors = (state=[], action) => {
+  
+  switch(action.type){
+  
+    case C.ADD_ERROR :
+      return [...state, action.payload] // meaning that the action.payload is added at the end of this state array
+      
+    case C.CLEAR_ERROR :
+      return state.filter((message, i) => i !== action.payload) // when true then added to the array, when false, then filtered out of the array
+      
+    case default :
+      return state
+  }
+}
+```
