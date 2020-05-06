@@ -94,7 +94,36 @@ export const errors = (state=[], action) => {
     case C.CLEAR_ERROR :
       return state.filter((message, i) => i !== action.payload) // when true then added to the array, when false, then filtered out of the array
       
-    case default :
+    default :
+      return state
+  }
+}
+```
+We can also compose reducers as follows :
+
+```
+export const skiDay = (state=null, action) => 
+  (action.type === C.ADD_DAY) ?
+  action.payload :
+  state
+  
+export const allSkiDays = (states=[], action) => {
+  
+  switch(action.type) {
+    
+    case C.ADD_DAY :
+    
+      // the below command checks whether the state array has some entry that is equal to payload.date. If this is the case then hasDayAlready takes on the value true.
+      const hasDayAlready = state.some[skiDay => skiDay.date === action.payload.date]
+      
+      return (hasDayAlready) ? state : 
+      [...state, skiDay(null, action)]
+    
+    case C.REMOVE_DAY :
+      
+      return state.filter(skiDay => skiDay.date !== action.payload)
+      
+    default :
       return state
   }
 }
