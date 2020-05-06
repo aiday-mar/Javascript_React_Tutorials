@@ -73,3 +73,11 @@ console.log(`
   new goal : ${nextState}
 `)
 ```
+We can also write the above in a more concise way :
+
+```
+export const goal = (state = 10, action) => 
+  (action.type === C.SET_GOAL) ?
+  parseInt(action.payload) : 
+  state
+```
