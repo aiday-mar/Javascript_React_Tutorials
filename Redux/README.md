@@ -369,4 +369,47 @@ store.dispatch({
 
 # Action Creators
 
-The store is used to manage data, read the current state from the store, mutate state by dispatching an action. The store and the reducers are not involved with the application logic part, meaning that they should not be involved with the following tasks : reading/writing data to a persistence layer, mutating global state, changing global variables, fetching data from a rest endpoint or socket server. The store for example just contains data. Action creators encapsulate the logic of the application.
+The store is used to manage data, read the current state from the store, mutate state by dispatching an action. The store and the reducers are not involved with the application logic part, meaning that they should not be involved with the following tasks : reading/writing data to a persistence layer, mutating global state, changing global variables, fetching data from a rest endpoint or socket server. The store for example just contains data. Action creators encapsulate the logic of the application. For example the previous can be written as follows :
+
+```
+import storeFactory from './store'
+import {addDay, removeDay, setGoal} from './actions'
+
+const store = storeFactory()
+
+store.dispatch(
+  addDay("Heavenly", "2016-12-22", true, false)
+)
+
+store.dispatch(
+  removeDay("2016-12-22")
+)
+
+store.dispatch(
+  setGoal(55)
+)
+```
+The addDay action is defined separately in the action.js file as follows :
+
+```
+export function addDay(resort, date, powder=false, backcountry=false) {
+  
+  return {
+    type : C.ADD_DAY,
+    payload : {resort, date, powder, backcountry}
+  }
+}
+
+export const removeDay = function(date) {
+  
+  return {
+    type : C.REMOVE_DAY,
+    payload : date,
+  }
+}
+
+export const setGoal = (goal) => ({
+  type : C.SET_GOAL,
+  payload : goal
+})
+```
