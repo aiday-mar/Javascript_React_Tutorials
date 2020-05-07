@@ -128,3 +128,114 @@ export const allSkiDays = (states=[], action) => {
   }
 }
 ```
+
+It is possible to build challenges in order to test the reducers. This is somewhat similar to unit testing.
+
+```
+npm run challenge -a
+```
+We have a challenge folder under the src folder. However one challenge presents an error because the corresponding reducer is not coded. Here is the reducer :
+
+```
+export const fetching = (state=false, action) => {
+  
+  switch(action.type) {
+  
+    case C.FETCH_RESORT_NAMES :
+      return true
+    
+    case C.CANCEL_FETCHING :
+      return false
+    
+    default :
+      return state
+  }
+}
+```
+
+The corresponding challenge is :
+
+```
+import C from '../constants'
+import expect from 'expect'
+import {fetching} from '../store/reducers'
+
+const action = {
+  type : C.FETCH_RESORT_NAMES
+}
+
+const state = false
+const expectedState = true
+const actualState = fetching(state, action)
+
+// the below is like the JUnit testing
+expect(actualState).toEquak(expectedState)
+
+// if the above is true then we output that the challenge is passed
+console.log(`
+  Challenge A : FETCH_RESORT_NAMES Passed !
+`)
+```
+We can now install redux as follows :
+
+```
+npm install redux --save 
+```
+
+Having installed the above library, now we can construct the below combined reducer that has to mirror the structure of the JSon file.
+
+```
+imoirt {combineReducers} from 'redux'
+
+export default combineReducers ({
+
+  allSkiDays,
+  goals,
+  errors,
+  resortNames : combineReducers({
+    fetching,
+    suggestions,
+  })
+})
+```
+
+We can use this combined reducer as follows, here below the single reducer is named addReducer, it is the reducer which is by default exported from the file :
+
+```
+import C from './constants'
+import appReducer from './store/reducers'
+import initialState from './initialState.json'
+
+state = appReducer(state, {
+  type : C.SET_GOAL,
+  payload : 2,
+})
+
+state = appReducer(state, {
+  type : C.ADD_DAY,
+  payload : {
+    "resort" : "Mt. Shasta",
+    "date" : "2016-10-28",
+    "powder" : false,
+    "backcountry" : true,
+  }
+})
+
+state = appReducer(state, {
+  type : C.CHANGE_SUGGESTIONS,
+  payload : ["Mt Tallac", "Mt Hood", "Mt Shasta"],
+})
+
+console.log(`
+  
+  Next state
+  =============
+  goal : ${state.goal}
+  resorts : ${JSON.stringify(state.allSkiDays)}
+  fetching : ${state.resortName.fetching}
+  suggestions : ${state.resortNames.suggestions}
+`)
+```
+
+# The Store
+
