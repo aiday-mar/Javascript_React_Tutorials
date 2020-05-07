@@ -239,3 +239,69 @@ console.log(`
 
 # The Store
 
+We will install webpack as follows :
+
+```
+npm install webpack --save-dev
+npm install webpack-dev-server
+npm install babel-loader --save-dev
+npm install json-loader --save-dev
+npm install babel-core --save-dev
+```
+Webpack is the tool used to create the budle.js file. We can use the webpack dev server to host our application. We will need to create a webpack.config.js file. We need to specify inside of it some data about the bundle and run the dev server.
+
+```
+module.exports = {
+  entry : "./src/index.js"
+  output : {
+    path : "dist/assets",
+    filename : "bundle.js",
+    publicPath : "assets",
+  },
+  devServer: {
+    inline : true,
+    contentBase : "./dist",
+    port : 3000,
+  }
+  module : {
+    loaders : [
+      {
+      test : /\.js$/     // which are the files having a javascript extension.
+      exclude : /(node_module)/    //exclude everything in the node module folder
+      loader : ['babel']
+      query : {
+        presets : ['latest', 'stage-0']
+      },
+      {
+      test : /\.json$/
+      exclude : /(node_module)/
+      loader : 'json-loader'
+      }
+      }
+    ]
+  }
+}
+```
+
+Now we will create an instance of a store as follows :
+
+```
+import appReducer from './store/reducers'
+import {createStore} from 'redux'
+
+const store = createStore(appReducer)
+
+console.log('initial state', store.getState())
+
+store.dispatch({
+  type : C.ADD_DAY
+  payload : {
+    "ressort" : "Mt Shasta",
+    "date" : "2016-10-28",
+    "powder" : false,
+    "backcountry" : true,
+  }
+})
+
+console.log('next state', store.getState())
+```
