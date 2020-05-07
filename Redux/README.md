@@ -412,4 +412,24 @@ export const setGoal = (goal) => ({
   type : C.SET_GOAL,
   payload : goal
 })
+
+export const addError = (message) => ({
+  type : C.ADD_ERROR,
+  payload : message,
+})
 ```
+An example of a challenge that could be used to test the functions above is :
+
+```
+store.dispatch(
+  addError("something went wrong")
+)
+
+expect(store.getState().errors).toEqual(["something went wrong"])
+
+console.log(`
+  addError() Action Creator Works !
+`)
+```
+
+** Async actions with redux-thunk **
