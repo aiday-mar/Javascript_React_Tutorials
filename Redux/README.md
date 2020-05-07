@@ -305,3 +305,68 @@ store.dispatch({
 
 console.log('next state', store.getState())
 ```
+
+When actions are dispatched, a call back handler is subscribed to the store as follows : 
+
+```
+window.store = store
+
+store.subscribe(() => console.log(store.getState()))
+
+store.subscribe(() => {
+  
+  const state = JSON.stringify(store.getState())
+  localStorage['redux-store'] = state
+})
+```
+In the code above the store dispatched actions four times a second then after three seconds, we unsubscribe from the logger :
+
+```
+const unsubscribeGoalLogger = store.subscribe(
+  () => console.log(` Goal : ${store.getState().goal}`)
+)
+
+setInterval(() => {
+  
+  store.dispatch({
+    type : C.SET_GOAL
+    payload : Math.floor(Math.random() * 100)
+  })
+}, 250)
+
+setTimeout(() => {
+  
+  unsubscribeGoalLogger
+}, 3000)
+```
+
+The following is another example :
+
+```
+const initialState = (localStorage['redux-store']) ?  // if exists then we show that otherwise it's the empty set
+  JSON.parse(localStorage['redux-store']) :
+  {}
+
+const saveState = () => {
+  const state = JSON.stringify(store.getState())
+  localStorage['redux-store'] = state // save the store state in the local storage
+}
+
+const store = storeFactory(initialState)
+
+store.subscribe(saveState) // save state applied when we dispatch
+
+store.dispatch({
+  type : C.ADD_DAY,
+  payload : {
+    "resort" : "Mt Shasta",
+    "date" : "2016-10-28",
+    "powder" : true,
+    "backcountry" : true,
+  }
+})
+```
+
+# Action Creators
+
+The store is used to manage data, read the current state from the store, mutate state by dispatching an action. The store and the reducers are not involved with the application logic part, meaning that they should not be involved with the following tasks : reading/writing data to a persistence layer, mutating global state, changing global variables, fetching data from a rest endpoint or socket server. The store for example just contains data. Action creators encapsulate the logic of the application.
