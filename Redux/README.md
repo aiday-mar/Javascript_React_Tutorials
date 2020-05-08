@@ -572,3 +572,37 @@ const mapStateToProps = (state) => {
 const Container = connect(mapStateToProps)(SkiDayCount)
 
 export default Container
+
+```
+
+Furthermore we can add event listeners as follows :
+
+```
+const handleError = error => {
+  store.dispatch(
+    addError(error.message)
+  )
+}
+
+window.addEventListener("error", handleError)
+```
+Another example of the above function is :
+
+```
+import SkiDayList from '../ui/SkiDayList'
+import {connect} from 'react-redux'
+import {removeDay} from '../../actions'
+
+const mapStateToProps = (state, props) => ({
+  days : state.allSkiDays,
+  filter : props.params.filter,
+})
+
+const mapDispatchToProps = dispatch => ({
+  onRemoveDay(date) {
+    dispatch(
+      removeDay(date)
+    )
+  }
+})
+```
