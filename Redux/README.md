@@ -432,4 +432,87 @@ console.log(`
 `)
 ```
 
-** Async actions with redux-thunk **
+**Async actions with redux-thunk**
+
+Thunks are action creators.
+
+```
+npm install redux-thunk --save
+```
+
+Thunkts though do not return the action object, they return another function, as follows :
+
+```
+export const randomGoals = () => (dispatch, getState) => {
+  
+  if (!getState().resortNames.fetching) {
+    
+    dispatch({
+      type : C.FETCH_RESORT_NAMES
+    })
+    
+    setTimeout(() => {
+      dispatch({
+        type : C.CANCEL_FETCHING
+      })
+    }, 1500)
+  }
+}
+```
+
+The above thunk causes two actions to dispatch. We can use the above function as follows :
+
+```
+import {randomGoals} from './actions'
+
+const store = storeFactory()
+
+store.dispatch(
+  randomGoals()
+)
+```
+
+**Autocompletethunk**
+
+We have below the code :
+
+```
+npm install isomorphic-fetch -save
+```
+
+Next we will write :
+
+```
+import fetch from 'isomorphic-fetch'
+
+export const suggestResortNames = value => dispatch => {
+  
+  dispatch({
+    type : C.FETCH_RESORT_NAMES
+  })
+  
+  // the below returns an asynchronous resonse
+  fetch('http://localhost:3333/resorts/' + value)
+  .then(response => response.json())
+  .then( suggestions => {
+      
+      dispatch({
+        type : C.CHANGE_SUGGESTIONS,
+        payload : suggestions,
+      })
+      .catch(error => {
+        
+        dispatch(
+          addError(error.message)
+        )
+        
+        dispatch({
+          type : C.CANCEL_FETCHING
+        })
+      })
+   })
+}
+```
+
+# Incorporating React
+
