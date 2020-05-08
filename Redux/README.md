@@ -551,3 +551,24 @@ render(
   document.getElementById('react-container')
 )
 ```
+
+**Map props to React components**
+
+User interfaces components are pure React components. These communicate through their properties. In a React app it is possible to oragnize the user interface files and the continer files in two different folders. Connect is a class from the react redux library, that creates a component that grabs the store out of the state and can map state from the store to properties in a child component. An example is below :
+
+```
+import SkiDayCount from '../ui/SkiDayCount'
+import { connect } from 'react-redux'
+
+const mapStateToProps = (state) => {
+  
+  return {
+    total : state.allSkiDays.length,
+    powder : state.allSkiDays.filter(day => day.powder).length,
+    backcountry : state.allSkiDays.filter(day => day.backcountry).length
+  }
+}
+
+const Container = connect(mapStateToProps)(SkiDayCount)
+
+export default Container
