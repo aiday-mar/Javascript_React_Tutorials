@@ -401,5 +401,37 @@ class Feed extends Component {
 }
 
 export default Feed; 
+```
 
+Now we will secure server API files. First we need to run the following commands :
+
+```
+npm install --save express-jwt-authz
+```
+The code is below :
+
+```
+import jwtAuthz from 'express-jwt-authz'
+```
+
+And we have :
+
+```
+const secureApi = jwt({
+  secret : jwks.expressJwtSecret({
+    cache : true,
+    rateLimit : true,
+    jwksRequestsPerMinute : 5,
+    jwksUri : "https://mannydesigns.auth0.com/.well-known/jwks.json"
+  }),
+  audience : 'https://manny-linkedin',
+  issuer : "https://mannydesigns.auth0.com/",
+  algorithms : ['RS256']
+});
+
+const checkScopes = jwtAuthz(['read:courses']);
+
+app.get('/courses', secureApi, checkScopes, (req, res) => {
+  let courses = { ... }
+})
 ```
