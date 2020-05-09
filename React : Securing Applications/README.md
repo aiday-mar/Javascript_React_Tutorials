@@ -127,7 +127,7 @@ The Auth file looks as follows :
 ```
 import history from '../history';
 import auth0 from 'auth0-js';
-import { AUTH_CONFIG } from './auth0-variables';
+import { AUTH_CONFIG } from './auth0-variables'; // where we specify our credentials for the the use of Auth0
 
 export default class Auth {
   auth0 = new auth0.WebAuth({
@@ -141,6 +141,7 @@ export default class Auth {
 
   constructor() {
     this.login = this.login.bind(this);
+    // we bind the functions which are later described to this instance by using this and bind
     this.logout = this.logout.bind(this);
     this.handleAuthentication = this.handleAuthentication.bind(this);
     this.isAuthenticated = this.isAuthenticated.bind(this);
@@ -164,7 +165,7 @@ export default class Auth {
   }
 
   getAccessToken() {
-    const accessToken = localStorage.getItem('access_token');
+    const accessToken = localStorage.getItem('access_token'); // we find the value with that key
     if (!accessToken) {
       return new Error('No access token found');
     }
@@ -194,8 +195,59 @@ export default class Auth {
     // Check whether the current time is past the 
     // access token's expiry time
     let expiresAt = JSON.parse(localStorage.getItem('expires_at'));
-    return new Date().getTime() < expiresAt;
+    return new Date().getTime() < expiresAt;  // which returns a boolean
   }
 }
 
 ```
+
+Net we add the routes to the application.
+
+```
+import React from 'react';
+import { Route, Router } from 'react-router-dom';
+import App from './App';
+import Contact from './Contact';
+import About from './About';
+import Feed from './Feed';
+import Callback from './Callback/Callback';
+import Auth from '../Auth/Auth';
+import history from '../history';
+
+const auth = new Auth();
+
+const handleAuthentication = (nextState, replace) => {
+  if (/access_token|id_token|error/.test(nextState.location.hash)) {
+    auth.handleAuthentication();
+  }
+}
+
+export const makeMainRoutes = () => {
+  return (
+      <Router history={history} component={App}>
+        <div className="container">
+          <Route path="/" render={(props) => <App auth={auth} {...props} />} />
+          <Route path="/feed" render={(props) => <Feed auth={auth} {...props} />} />
+          <Route path="/about" render={(props) => <About auth={auth} {...props} />} />
+          <Route path="/contact" render={(props) => <Contact auth={auth} {...props} />} />
+          <Route path="/callback" render={(props) => {
+            handleAuthentication(props);   
+            return <Callback {...props} /> 
+          }}/>
+        </div>
+      </Router>
+  );
+}
+
+```
+We also have an `index.js` file as follows : 
+
+```
+import ReactDOM from 'react-dom';
+import { makeMainRoutes } from './components/routes';
+
+const routes = makeMainRoutes();
+
+ReactDOM.render(routes, document.getElementById('root'));
+```
+
