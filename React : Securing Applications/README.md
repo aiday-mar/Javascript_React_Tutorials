@@ -328,3 +328,10 @@ class App extends Component {
 
 export default App;
 ```
+
+Before working on the feed component we install some dependencies :
+
+```
+npm install --save auth0-js axios history  jwt-decode
+```
+
