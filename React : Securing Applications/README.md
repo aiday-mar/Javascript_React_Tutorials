@@ -75,3 +75,127 @@ In the `.babelrc` file we write :
 ```
 
 In the course we installed Postman from www.getpostman.com and opened the application. Inside the GET search bar you can type : `localhost:4000/courses` this will be the API endpoint. Then you can click on `send` and that way get the data from the server.
+
+Then you can go to www.auth0.com to sign up to the website. Scopes allow us to authorize specific endpoints for our API. When you create an API on Auth0, the website creates the client already. When you scroll down to client type you need to choose 'single page application'. In the allowed callbacks URLs we can write : 'https://localhost:3000/callback' . In the allowed origins tab write : 'https://localhost:3000'.
+
+After some work upon the folder structure, we can open the client folder, the src folder and the auth folder. In the `auth0-variables.js` we have the following code :
+
+```
+export const AUTH_CONFIG = {
+  domain : {domain name},
+  clientId : {client id you find after registering}
+  callbackUrl : 'http://localhost:3000/callback'
+}
+```
+
+There is also an `Auth.js` file which is generated for us by the webiste when we download a sample app. There is also a `components` folder and it contains a file called `Callback.js` which contains code that will be rendered while we're connected to Auth0.
+
+The Callback.js file is as follows :
+
+```
+import React, { Component } from 'react';
+import loading from './loading.svg';
+
+class Callback extends Component {
+  render() {
+    const style = {
+      position: 'absolute',
+      display: 'flex',
+      justifyContent: 'center',
+      height: '100vh',
+      width: '100vw',
+      top: 0,
+      bottom: 0,
+      left: 0,
+      right: 0,
+      backgroundColor: 'white',
+    }
+
+    return (
+      <div style={style}>
+        <img src={loading} alt="loading"/>
+      </div>
+    );
+  }
+}
+
+export default Callback;
+```
+
+The Auth file looks as follows : 
+
+```
+import history from '../history';
+import auth0 from 'auth0-js';
+import { AUTH_CONFIG } from './auth0-variables';
+
+export default class Auth {
+  auth0 = new auth0.WebAuth({
+    domain: AUTH_CONFIG.domain,
+    clientID: AUTH_CONFIG.clientId,
+    redirectUri: AUTH_CONFIG.callbackUrl,
+    audience: `https://${AUTH_CONFIG.domain}/userinfo`,
+    responseType: 'token id_token',
+    scope: 'openid'
+  });
+
+  constructor() {
+    this.login = this.login.bind(this);
+    this.logout = this.logout.bind(this);
+    this.handleAuthentication = this.handleAuthentication.bind(this);
+    this.isAuthenticated = this.isAuthenticated.bind(this);
+  }
+
+  login() {
+    this.auth0.authorize();
+  }
+
+  handleAuthentication() {
+    this.auth0.parseHash((err, authResult) => {
+      if (authResult && authResult.accessToken && authResult.idToken) {
+        this.setSession(authResult);
+        history.replace('/feed');
+      } else if (err) {
+        history.replace('/feed');
+        console.log(err);
+        alert(`Error: ${err.error}. Check the console for further details.`);
+      }
+    });
+  }
+
+  getAccessToken() {
+    const accessToken = localStorage.getItem('access_token');
+    if (!accessToken) {
+      return new Error('No access token found');
+    }
+    return accessToken; 
+  }
+
+  setSession(authResult) {
+    // Set the time that the access token will expire at
+    let expiresAt = JSON.stringify((authResult.expiresIn * 1000) + new Date().getTime());
+    localStorage.setItem('access_token', authResult.accessToken);
+    localStorage.setItem('id_token', authResult.idToken);
+    localStorage.setItem('expires_at', expiresAt);
+    // navigate to the home route
+    history.replace('/feed');
+  }
+
+  logout() {
+    // Clear access token and ID token from local storage
+    localStorage.removeItem('access_token');
+    localStorage.removeItem('id_token');
+    localStorage.removeItem('expires_at');
+    // navigate to the home route
+    history.replace('/home');
+  }
+
+  isAuthenticated() {
+    // Check whether the current time is past the 
+    // access token's expiry time
+    let expiresAt = JSON.parse(localStorage.getItem('expires_at'));
+    return new Date().getTime() < expiresAt;
+  }
+}
+
+```
