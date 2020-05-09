@@ -335,3 +335,71 @@ Before working on the feed component we install some dependencies :
 npm install --save auth0-js axios history  jwt-decode
 ```
 
+Below we also include the code for the Feed component :
+
+```
+import React, { Component } from 'react';
+import axios from 'axios';
+import FeedItem from './FeedItem';
+
+class Feed extends Component {
+  constructor(props) {
+    super(props);
+    this.state = {
+      // initially then ourfeed matrix is just an empty matrix
+      feeds: [],
+    };
+  }
+
+  componentWillMount() {
+    const { getAccessToken } = this.props.auth;
+    // below we have a string and we input the access token
+    const headers = { 'Authorization': `Bearer ${getAccessToken()}`}
+    const url = 'http://localhost:4000/courses';
+    // promise based http client for the browser and node.js
+    // it makes it easy to send asynchronous http requests for rest endpoints and perform crud operations
+    return axios.get(url, { headers})
+      .then(response => this.setState({ feeds: response.data }));
+      // the then specifies it's a promise, we assing a new variable called feeds which is the data associated to respond
+  }
+
+  login() {
+    this.props.auth.login();
+  }
+
+  render() {
+    const { isAuthenticated } = this.props.auth;
+
+    return (
+      <div>
+      {
+        // here we return the div if the person is not authenticated
+        !isAuthenticated() && (
+          <h4>
+            You are not logged in! Please {' '}
+            <a
+              style={{ cursor: 'pointer'}}
+              // you have this function which is bound to the link
+              onClick={this.login.bind(this)}
+            >Log in</a>
+            {' '}to continue.
+          </h4>
+        )
+      }
+      {
+        isAuthenticated() && (
+          this.state.feeds.map((item) => 
+          <FeedItem key={item.id} feed={item} />
+          // you render this component if authenticated, we have the component key is the item id
+          // the feed variable is initiated to be the item
+        )
+        )
+      }
+    </div>
+    )
+  }
+}
+
+export default Feed; 
+
+```
