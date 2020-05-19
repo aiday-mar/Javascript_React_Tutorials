@@ -216,4 +216,40 @@ document.getElementById("btnMulti").addEventListener("click", function () {
 })
 ```
 
-We can store data locally using the Cache API. The Cache API takes the results of an HTTP request, and stores it for later use.
+We can store data locally using the Cache API. The Cache API takes the results of an HTTP request, and stores it for later use. You can cache anything an HTTP response comes back with.
+
+```
+document.getElementById('btnClear').addEventListener("click", function () {
+  caches.delete('my-data-cache').then(function(result) { 
+    console.log(result ? "cache deleted" : "error" )
+  })
+});
+
+function getJSONData(url) {
+  
+  // the following code shows us that the Cache API is there
+  if ('caches' in window) { 
+    window.caches.open('my-data-cache').then(function (cache) {
+      cache.match(url).then(function(result){
+        if (result === undefined) {
+          console.log("not found in cache: ", url);
+          
+          fetch(url).then(function (result) { 
+            
+            let clonedresp = result.clone();
+            cache.put(url, result);
+            clonedresp.text().then(function(data) { console.log(data) })
+            
+          });
+        }
+        else {
+          result.text().then(function(text) {
+            console.log("cache hit : ", url, text);
+          })
+        } 
+      })
+    })
+  }
+  
+}
+```
