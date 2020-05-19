@@ -104,11 +104,13 @@ You can do server communications with the Beacom API. It makes use of Ajax to se
     document.getElementById("btn2").addEventListener("click", function() {
       sendEvent("Button 2 click");
     });
+    
   })
   
   window.addEventListener('unload', function() {
     sendEvent("unloadEvent")
   })
+  
 </script>
 ```
 
