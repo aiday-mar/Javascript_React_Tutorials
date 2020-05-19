@@ -73,6 +73,6 @@ The prefetch attribute can be used to give a hint to the browser to retrieve a r
 
 ```
 <head>
-  <link rel="prefetch" href="prefetch_page.html" />
+  <link rel="prefetch" href="prefetch_page.html" as="type"/>
 </head>
 ```
