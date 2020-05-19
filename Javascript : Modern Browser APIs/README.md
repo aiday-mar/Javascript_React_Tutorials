@@ -68,3 +68,11 @@ There is an API called request animation frame that allows you to sync up the di
   }
 </script>
 ```
+
+The prefetch attribute can be used to give a hint to the browser to retrieve a resource very likely to be needed on the next navigation. An example is as follows:
+
+```
+<head>
+  <link rel="prefetch" href="prefetch_page.html" />
+</head>
+```
