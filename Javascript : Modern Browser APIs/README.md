@@ -177,3 +177,43 @@ There are various ways to store and manipulate data. This can be done through co
   });
 </script>
 ```
+IndexedDB is asynchronous, it keeps web apps responsive, unlike localStorage API. This IndexedDB can store multiple types of data, and is not limited to text strings. They can easily handle multiples separate data stores. The API for using IndexedDB is complex. Next we can use the localForage library as follows. First you need to import it : `<script src="localforage.min.js"></script>`. The following are examples of code snippets using local forage.
+
+```
+localforage.setItem(key, val);
+localforage.getItem(key);
+localforage.removeItem(key);
+localforage.iterate(function(value, key, iterNum) {
+  console.log(iterNum, [key, value]);
+});
+```
+
+After each such experssionn above you can add at the end : `.then(function(params){ console.log(" some text ") });`. LocalForage can also support multiple database instances : 
+
+```
+var instance1, instance2
+document.getElementById("btnMulti").addEventListener("click", function () {
+  instance1 = localforage.createInstance({
+    "name" : "instance1"  // which is the data present in the local forage
+  });
+  instance2 = localforage.createInstance({
+    "name" : "instance2"
+  });
+  
+  document.getElementById("btnStore").addEventListener("click", function() {
+    instance1.setItem("key1", "value1");
+    instance2.setItem("key1", "value2");
+  });
+  
+  document.getElementById("btnGetData").addEventListener("click", function () {
+    instance1.getItem("key1").then(function (val) {
+      console.log("instance1 returned :", val);
+    })
+    instance2.getItem("key1").then(function (val){
+      console.log("instance2 returned :", val);
+    })
+  });
+})
+```
+
+We can store data locally using the Cache API. The Cache API takes the results of an HTTP request, and stores it for later use.
