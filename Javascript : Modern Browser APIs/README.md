@@ -113,4 +113,67 @@ You can do server communications with the Beacom API. It makes use of Ajax to se
   
 </script>
 ```
+The InterSection Observer API allows us to regulate the visibility of an element, as follows :
 
+```
+<script>
+  window.addEventListener("load", function() {
+    
+    const observer = new IntersectionObserver(function (entries) {
+      console.log(entries);
+      if (entries[0].intersectionRatio < 0.5) {
+        entries[0].target.className = "background0";
+      }
+      if (entries[0].intersectionRatio >= 0.5 &&
+          entries[0].intersectionRatio < 1) {
+        entries[0].target.className = "background50";
+      }
+      if (entries[0].intersectionRatio >= 1) {
+        entries[0].target.className = "background100";
+      }
+    },
+    {
+      "threshold" : [0, 0.5, 1.0]
+    })
+    
+    observer.observe(document.getElementById("targetElem"));
+  })
+</script>
+```
+
+There are various ways to store and manipulate data. This can be done through cookies, application cache, local storage, session storage, XML HTTP requests, Indexed DBs and WebSQL. The Fetch() API can be a replacement for the XML HTTP reuest method. There is also an API provided by the Mozilla foundation called localForage. This API gives a nice wrapper around the IndexedDB API. There is also a Cache API which can be used to cache HTTP requests and response pairs locally. This can be wrapper up with the StorageManager and DeviceMemory APIs, which can be used to determine how much storage space and memory capacity a device has, and how to make it persistent on the user's local machine.
+
+```
+<script>
+  window.addEventListener("load", function() {
+    
+    fetch("https://httpbin.org/json").then(function(response) {
+      console.log("Content-type :", response.header.get("Content-Type"));
+      console.log("Redirected: ", response.redirected);
+      console.log("Status: ", response.status);
+      console.log("Status-text: ", response.statusText);
+      console.log("Response type:", response.type);
+      console.log("Response URL:", response.url);
+      
+      if(response.type == 200) {
+        return response.text();
+      }.then(function (returnedData) {
+        console.log("Returned data : ", returnedData);
+      }).catch(function (error) { 
+        console.log("Error : ", error);
+      })
+      
+      fetch("https://httpsbin.org/post", {
+        method : 'post',
+        body: 'foo-bar',
+        headers : {
+          "x-custom-header" : "my custom value" 
+        }
+      }).then(function (response) {
+        return response.text();
+      }).then(function (returnedData) {
+        console.log("Returned post data : ", returnedData);
+      })
+  });
+</script>
+```
