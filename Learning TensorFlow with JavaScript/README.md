@@ -26,3 +26,11 @@ Models allow you to use operations to create an output. We can set up the page f
 </body>
 </html>
 ```
+
+You can also create tensors as follows :
+
+```
+const shape = [4,2];
+const data = tf.tensor([4,6,5,9,13,25,1,57], shape);
+data.print();
+```
