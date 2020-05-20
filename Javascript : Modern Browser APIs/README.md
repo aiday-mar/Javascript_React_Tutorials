@@ -260,3 +260,114 @@ if (navigator.deviceMemory) {
   document.getElementById("devMen").textContent = navigator.deviceMemory;
 }
 ```
+We show an example of the Dialog API :
+
+```
+<dialog id="dialog1">
+  <div id="dlgcontent">
+    <button id="okBtn">OK</button>
+    <button id="cancelBtn">Cancel</button>
+  </div>
+</dialog>
+
+<script>
+  window.addEventListener("load", function() {
+    document.getElementById("show1").addEventListener("click", function () {
+      document.getElementById("dialog1").show();
+    })
+    document.getElementById("show2").addEventListener("click", function () {
+      document.getElementById("dialog1").showModal();
+    })
+    
+    document.getElementById("okBtn").addEventListener("click", function () {
+      dlg = document.getElementById("dialog1");
+      
+      if(dlg.open) {
+        dlg.close("OK");
+      }
+    })
+    
+    document.getElementById("cancelBtn").addEventListener("click", function () {
+      dlg = document.getElementById("dialog1");
+      
+      if (dlg.open) {
+        dlg.close("Cancel");
+      }
+    })
+    
+    dlg = document.getElementById("dialog1");
+    dlg.addEventListener("close", function (evt) {
+      console.log("Dialog close: ", dlg.returnValue)
+    });
+    dlg.addEventListener("cancel", function (evt) {
+      console.log("Dialog canceled: ", dlg.returnValue)
+    });
+  })
+</script>
+```
+
+In JavaScript it is also possible to implement notifications. Example of use :
+
+```
+<script>
+  window.addEventListener("load", function () {
+    Notification.requestPermission().then(function (result) {
+      console.log("Notification permission request: ", result);
+    })
+  })
+  
+  document.getElementById("btnShow1").addEventListener("click", function() {
+    if (Notification.permission == "granted") {
+      var notify = new Notification("This is a basic notification");
+    }
+  })
+  
+  document.getElementById("btnShow2").addEventListener("click", function() {
+    if (Notification.permission == "granted") {
+      var title = document.geElementById("notTitle").value;
+      var body = document.getElementById("notBody").value;
+      var useIcon = document.getElementById("notIcone").checked;
+      var isPersistent = document.getElementById("notPersist").checked;
+      
+      var notOptions = {};
+      notOptions.body = body;
+      notOptions.requireInteraction = isPersistent;
+      if (useIcon) {
+        notOptions.icon = "../images/info.png"
+      }
+      
+      var theNote = new Notification(title, notOptions);
+      
+      theNote.onclick = function (evt) {
+        evt.target.close();
+        window.location = "http://w3.org"
+      }
+    }
+  })
+</script>
+```
+
+We can also detect network conditions. An example is as follows :
+
+```
+<script>
+  window.addEventListener("load", updateNetState);
+  window.addEventListener("online", updateNetState);
+  window.addEventListener("offline", updateNetState);
+  
+  function updateNetState(evt){
+    const statusElem = document.getElementById("netState");
+    let isOnline = navigator.onLine;
+    
+    statusElem.className = isOnline ? "onlineState" : "offlineState";
+    statusElem.innerText = isOnline ? "ONLINE" : "OFFLINE";
+    
+    if (navigator.connection) {
+      connType = navigator.connection;
+      statusElem.innerText += " Effective type: " + connType.effectiveType 
+      + ", Downlink speed: " + connType.downlink + "MB/s" + 
+      ". Estimated round-trip time is: " + connType.rtt + "ms"
+    }
+  }
+</script>
+```
