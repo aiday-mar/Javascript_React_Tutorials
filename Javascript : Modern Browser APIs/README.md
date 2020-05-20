@@ -443,3 +443,32 @@ And we can also make images come full screen.
   }
 </script>
 ```
+
+It is possible to create dynamic images with the CSS Paint API. Consider the following `csspaint_start.js` files :
+
+```
+if (typeof registerPaint !== 'undefined') {
+  
+  class SampleCSSPaint {
+    
+    paint(ctx, size, props) {
+      ctx.linewidth = 3;
+      ctx.strokeStyle = "blue";
+      
+      ctx.beginPath();
+      ctx.moveTo(0,0);
+      ctx.lineTo(size.width, size.height);
+      ctx.stroke();
+      
+      ctx.beginPath();
+      ctx.moveTo(size.width, 0);
+      ctx.lineTo(0, size.height);
+      ctx.stroke();
+    }
+  }
+  
+  registerPaint("samplepainter", SampleCSSPaint);
+}
+```
+
+But now we want to modify the parameters for this CSS Paint API in the CSS header.
