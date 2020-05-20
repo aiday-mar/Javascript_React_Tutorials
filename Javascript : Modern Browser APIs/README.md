@@ -388,3 +388,58 @@ We can work with the page visibility as follows :
   })
 </script>
 ```
+
+And we can also make images come full screen.
+
+```
+<button id="btnDocFs">Enter Document Fullscreen Mode</button>
+<button id="btnIngFs">Enter Image Fullscreen Mode</button>
+<button id="btnExitFs">Exit Fullscreen Mode</button>
+
+<script>
+  window.addEventListener("load", function() {
+  
+    document.getElementById("btnDocFs").addEventListener("click", function () {
+      enterFullscreen(document.documentElement);
+    })
+    
+    document.getElementById("btnImgFs").addEventListener("click", function () {
+      enterFullscreen(document.getElementById("targetImg"));
+    })
+    
+    document.getElementById("btnExitFs").addEventListener("click", function () {
+      exitFullscreen();
+    })
+ })
+  
+  function enterFullscreen(elem) {
+    if (elem.requestFullscreen) {
+      elem.requestFullscreen();
+    }
+    if (elem.webkitRequestFullscreen) {
+      elem.webkitRequestFullscreen();
+    }
+    if (elem.mozRequestFullScreen) {
+      elem.mozRequestFullScreen();
+    }
+    if (elem.msRequestFullScreen) {
+      elem.msRequestFullscreen();
+    }
+  };
+  
+  function exitFullscreen() {
+    if (document.exitFullscreen) {
+      document.exitFullscreen();
+    }
+    if (document.webkitExitFullscreen) {
+      document.webkitExitFullscreen();
+    }
+    if (document.mozCancelFullScreen) {
+      document.mozCancelFullScreen();
+    }
+    if (document.msExitFullscreen) {
+      document.msExitFullscreen();
+    }
+  }
+</script>
+```
