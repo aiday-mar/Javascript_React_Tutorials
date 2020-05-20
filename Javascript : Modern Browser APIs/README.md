@@ -451,9 +451,17 @@ if (typeof registerPaint !== 'undefined') {
   
   class SampleCSSPaint {
     
+    static get inputProperties() {
+      return ['--cross-thickness', '--cross-color']
+    }
+    
     paint(ctx, size, props) {
-      ctx.linewidth = 3;
-      ctx.strokeStyle = "blue";
+    
+      let width = props.get('--cross-thickness');
+      let color = props.get('--cross-color').toString();
+      
+      ctx.linewidth = width;
+      ctx.strokeStyle = color;
       
       ctx.beginPath();
       ctx.moveTo(0,0);
