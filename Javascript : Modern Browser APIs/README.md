@@ -253,3 +253,10 @@ function getJSONData(url) {
   
 }
 ```
+We can get device memory information as follows :
+
+```
+if (navigator.deviceMemory) {
+  document.getElementById("devMen").textContent = navigator.deviceMemory;
+}
+```
