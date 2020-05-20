@@ -371,3 +371,20 @@ We can also detect network conditions. An example is as follows :
   }
 </script>
 ```
+We can work with the page visibility as follows :
+
+```
+<div id="targetElem">
+</div>
+
+<script>
+  window.addEventListener("load", function () {
+    outputDiv = document.getElementById("targetElemt");
+    outputDiv.innerHTML += "<p>Visibility state : " + document.visibilityState + "</p>";
+    
+    document.addEventListener("visibilitychange", function (evt) {
+      outputDiv.innerHTML += "<p>Visibility state : " + document.visibilityState + "</p>";
+    })
+  })
+</script>
+```
