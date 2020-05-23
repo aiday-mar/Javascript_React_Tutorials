@@ -92,3 +92,4 @@ When you use the container fluid, the div never snaps to a certain size and alwa
   </div>
 </section>
 ```
+We can also use this command : `row-cols(-BP)(-COL)`. Where `BP` can be any of `sm, md, lg, xl`, and `COL` can be any number from 1 to 6. The command `no-gutters` removes the 30px padding between the columns. As for the columns you can have the following command : `col(-BP)(-COL)` where `BP` can be any of `sm, md, lg, xl`, and `COL` can be any number between 1 and 12. You can align columns vertically by writing `align-TYP-DIR` where `TYP` can be items or self, and `DIR` can be start, center or end. Similarly you can align columns horizontally by writing : `justify-contente-DIR` and `DIR` can be any of start, center, end, around, between.
