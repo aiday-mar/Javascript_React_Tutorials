@@ -66,4 +66,10 @@ Imagine you want to define your own CSS variale then you must right `:root` as f
 
 <h2 style="color : var(--pink);"> Testimonials </h2>
 ```
-Containers have either a responsive fixed width that snap to certain breakpoints or you can have fluid containers that take up 100% of the width of the view port. Bootstrap uses a 12-clumn grid system.
+Containers have either a responsive fixed width that snap to certain breakpoints or you can have fluid containers that take up 100% of the width of the view port. Bootstrap uses a 12-clumn grid system. To use this we are going to have to work with the container, the row and the column classes. To create a container you need to add a div and add a class of `container(-SIZ)` where `SIZ` can be any of `sm, md, lg, xl, fluid`. Essentially the endings except for `fluid` allow you to resize the container so that it remains at a fixed width despite the size of the screen. To make an image cover half the height of the screen you can write :
+
+```
+<header style="height:50vh background: url(images/background.jpg) no-repeat center center; background-size: cover;margin-bottom: 20 px">
+  <img src="images/wisdompetlogo.svg" alt="Widsom Pet Logo">
+</header>
+```
