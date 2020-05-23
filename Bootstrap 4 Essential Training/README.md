@@ -51,3 +51,19 @@ There are also classes that you can use for images, such as `img-fluid`. This ma
   <figcaption></figcaption>
 </figure>  
 ```
+It is also possible to add a radius to the border radius instead: `<img class="img-fluid figure-img" style="border-radius:20px"></img>`. There are color variables as follows : `--blue, --indigo, --purple, --pink, --red, --orange, --yellow, --green, --teal, --cyan, --white, --gray, --gray-dark, --light, --dark, --primary, --secondary, --success, --info, --warning, --danger`. You can also add breakpoints as follows : `--breakpoint-xs, --breakpoint-sm, --breakpoint-md, --breakpoint-lg, --breakpoint-xl`. It is also possible to change the font-family as follows : `font-family-sans-serif, font-family-monospace`. To use the above colors you need to define a variable as follows :
+
+`<h2 style="color: var(--yellow);">Testimonials</h2>`
+
+Imagine you want to define your own CSS variale then you must right `:root` as follows below. Here we redefine the default value of the color of the --pink variable.
+
+```
+<style>
+  :root {
+    --pink : #C4226F;
+  }
+</style>
+
+<h2 style="color : var(--pink);"> Testimonials </h2>
+```
+Containers have either a responsive fixed width that snap to certain breakpoints or you can have fluid containers that take up 100% of the width of the view port. Bootstrap uses a 12-clumn grid system.
