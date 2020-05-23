@@ -42,3 +42,12 @@ Jane
 </blockquote>
 ```
 It is also possible to make the quote align on the right by writing as a class name : `<blockquote class="blockquote blockquote-reverse">`. Then there is the `text-COLOR` where color can be any of : `primary, secondary, success, danger, warning, info, light, dark, body, black-50, white-50, muted, white`, and we can set the background color with `bg-COLOR` where COLOR in this case can by any of the following : `primary, secondary, success, danger, warning, info, light, dark, white, transparent`. 
+
+There are also classes that you can use for images, such as `img-fluid`. This makes images responsive to the container, so they adjust  to the width of the container. You can also make thumbnail images by writing `img-thumbnail`. You can also set the style of the rounded image as : `ROUNDED(-SID) (-SHA) (-SIZ)`, where `SID` can be top, right, bottom, left, `SHA` can be circle, pill and `SIZ` can be 0, sm, lg. You can also align images with `float-left, float-right`. To align text `text-center`. And we centered the blcok image by writing `mx-auto`. An example of a figure is as follows :
+
+```
+<figure>
+  <img class="img-fluid rounded-circle" src="images/testimonial-janeh.jpg" alt="Photo">
+  <figcaption></figcaption>
+</figure>  
+```
