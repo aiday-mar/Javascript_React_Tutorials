@@ -73,3 +73,22 @@ Containers have either a responsive fixed width that snap to certain breakpoints
   <img src="images/wisdompetlogo.svg" alt="Widsom Pet Logo">
 </header>
 ```
+When you use the container fluid, the div never snaps to a certain size and always fills maximally the screen. You can use the columns and rows features as follows :
+
+```
+<section id="services">
+  <div class="container">
+    <div class="row">
+      <article class="col">
+      ...
+      </article>
+       <article class="col">
+      ...
+      </article>
+       <article class="col">
+      ...
+      </article>
+    </div>
+  </div>
+</section>
+```
