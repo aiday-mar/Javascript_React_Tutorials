@@ -108,3 +108,46 @@ For example when you type `row-cols-3` it will fit 3 articles on each row. If yo
   </div>
 </div>
 ```
+
+Imagine you want one article per page when the screen is extra small and otherwise you want two articles on one row, and when the screen is middle size you can have three articles :
+
+```
+<div class="container" id="services">
+  <div class="row row-cols-1 row-cols-sm-2 row-cols-md-3">
+    <section class="col">
+    </section>
+    ...
+  </div>
+</div>
+```
+Another way of writing this is by writing as below. Here each section takes up half of the horizontal space.
+
+```
+<div class="container" id="services">
+  <div class="row">
+    <section class="col-6">
+    </section>
+    ...
+  </div>
+</div>
+```
+A more refined version is : `<section class="col-sm-6 col-md-4 col-lg-3 col-xl-2">`. You can also offset elements by writing the following : `offset-BP-COL` where BP is one od the breakpoints and the COL can take any values between 1 and 11. An example of the use is : `<section class="col-sm-4 offset-sm-2">`. You can also nest columns one in the other, you do this by placing a row inside an existing column. For example:
+
+```
+<div class="container" id="services">
+  <div class="row">
+    <section class="col-sm-8">
+    </section>
+    <section class="col-sm-4">
+      <div class="row">
+        <div class="col-sm-4">
+        </div>
+        ...
+      </div>
+    </section>
+  </div>
+</div>
+```
+You can change the order to sections by typing in the class for example : `<section class="col order-2">`. When you specify an order on a line better to specify the order of all the elements on that row. When you type `class="d-flex flex-column"` then the elements appear side by side. You can vertically align elements as follows, either use they keyword : `align-items-ALN` or `align-self-ALN` where ALN is any of `start, center, end`. If you want to move elements horizontally you can write : `justify-content-ALN` where ALN can take values in `start, end, center, around`. The `around` keyword tries to put equidistant space between each column. 
+
+There are other ways to control the position of elements, aside from using the grid.
