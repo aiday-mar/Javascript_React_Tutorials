@@ -93,3 +93,18 @@ When you use the container fluid, the div never snaps to a certain size and alwa
 </section>
 ```
 We can also use this command : `row-cols(-BP)(-COL)`. Where `BP` can be any of `sm, md, lg, xl`, and `COL` can be any number from 1 to 6. The command `no-gutters` removes the 30px padding between the columns. As for the columns you can have the following command : `col(-BP)(-COL)` where `BP` can be any of `sm, md, lg, xl`, and `COL` can be any number between 1 and 12. You can align columns vertically by writing `align-TYP-DIR` where `TYP` can be items or self, and `DIR` can be start, center or end. Similarly you can align columns horizontally by writing : `justify-contente-DIR` and `DIR` can be any of start, center, end, around, between.
+
+For example when you type `row-cols-3` it will fit 3 articles on each row. If you write `row-cols-lg-4` then when the screen is large, there will be four articles which will fit onto the screen. Suppose you specify two sections `<section class="col-3>` and `<section class="col-6">` then the second section will take up twice the space horizontally than the first section. You can write for example :
+
+```
+<div class="container" id="services">
+  <div class="row align-items-center justify-content-center">
+    <section class="col-3">
+    </section>
+    <section class="col-3">
+    </section>
+    <section class="col-3">
+    </section>
+  </div>
+</div>
+```
