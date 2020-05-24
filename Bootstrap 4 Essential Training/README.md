@@ -240,3 +240,4 @@ You can have forms in web pages. The keywords used are : `form-inline, form-cont
 </form>
 ```
 
+You can also create collapsible content, for that we will need keywords such as `collapse, navbar-collapse, id`.
