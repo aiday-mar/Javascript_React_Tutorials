@@ -206,7 +206,7 @@ style="background-color: red">
     <img src="images/brandlogo.svg" style="width:80px" alt="Logo">
   </a>
   <div class="container">
-    <div class="navbar-nav">
+    <div class="navbar-nav ml-sm-auto">
       <a class="nav-item nav-link" href="#">Home</a>
       ...
     </div>
@@ -215,4 +215,19 @@ style="background-color: red">
 </nav>
 ```
 
-We have also the navbar options `navbar-brand` and `navbar-text`. We are going to add a dropdown to the navigation.
+We have also the navbar options `navbar-brand` and `navbar-text`. We are going to add a dropdown to the navigation. A dropdown requires a container to work. We have the following dropdown keywords : `dropdown, dropdown-toggle, data-toggle="dropdown"`. We also have the following keywords that can be used `dropdown-menu, dropdown-item`.
+
+```
+<div class="dropdown">
+  
+  <a class="nav-item nav-link dropdown-toggle"
+     data-toggle="dropdown" id="servicesDropdown"
+     aria-haspopup="true" aria-expanded="false"
+     href="#services"> Services </a>
+  
+  <div class="dropdown-menu" aria-labelledby="servicesDropdown">
+    <a class="dropdown-item" href="#"> Item 1 </a>
+    ...
+  </div>
+</div>
+```
