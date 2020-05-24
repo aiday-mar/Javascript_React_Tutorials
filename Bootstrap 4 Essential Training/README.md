@@ -202,11 +202,17 @@ Instead of `nav-tabs` you can write `nav-pills`. Instead of writing `justify-con
 ```
 <nav class="navbar bg-light navbar-light navbar-expand-sm"
 style="background-color: red">
+  <a class="navbar-brand d-none d-sm-inline-block" href="#">
+    <img src="images/brandlogo.svg" style="width:80px" alt="Logo">
+  </a>
   <div class="container">
     <div class="navbar-nav">
       <a class="nav-item nav-link" href="#">Home</a>
       ...
     </div>
+    <span class="navbar-text d-none d-xl-inline-block"> Some navbar text </span>
  </div>
 </nav>
 ```
+
+We have also the navbar options `navbar-brand` and `navbar-text`. We are going to add a dropdown to the navigation.
