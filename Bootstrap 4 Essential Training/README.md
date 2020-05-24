@@ -231,3 +231,11 @@ We have also the navbar options `navbar-brand` and `navbar-text`. We are going t
   </div>
 </div>
 ```
+You can have forms in web pages. The keywords used are : `form-inline, form-control`. An example is :
+
+```
+<form class="form-inline">
+  <input class="form-control mr-2" type="text" placeholder="Search">
+  <button class="btn btn-outline-light" type="submit">Go</button>
+</form>
+```
