@@ -150,4 +150,11 @@ A more refined version is : `<section class="col-sm-6 col-md-4 col-lg-3 col-xl-2
 ```
 You can change the order to sections by typing in the class for example : `<section class="col order-2">`. When you specify an order on a line better to specify the order of all the elements on that row. When you type `class="d-flex flex-column"` then the elements appear side by side. You can vertically align elements as follows, either use they keyword : `align-items-ALN` or `align-self-ALN` where ALN is any of `start, center, end`. If you want to move elements horizontally you can write : `justify-content-ALN` where ALN can take values in `start, end, center, around`. The `around` keyword tries to put equidistant space between each column. 
 
-There are other ways to control the position of elements, aside from using the grid.
+There are other ways to control the position of elements, aside from using the grid. You can specify the position classes as `fixed-top, fixed-bottom, sticky-top`. The sticky-top makes the element stick to the top of the page even when there is scrolling. You can also use the display tag as follows `d(-BP)-TYP` where BP can be any of `sm, md, lg, xl`, and TYP can be any of `none, inline, inline-block, block, table, table-row, table-cell, flex, inline-flex`. By default flex elements are block-level elements. You can also write : `d(-BP)(-inline)-flex`. When you write just `d-inline` you loose the ability to display elements of a specific size, when you write `d-inline-block` here you have the elements inlined and they are of the size that you specified. You can also make this as :
+
+```
+<div class="bg-info d-sm-inline-flex">
+  <div class="item">Item 1</div>
+  ...
+</div>
+```
