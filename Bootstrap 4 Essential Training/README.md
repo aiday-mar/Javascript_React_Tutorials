@@ -240,4 +240,19 @@ You can have forms in web pages. The keywords used are : `form-inline, form-cont
 </form>
 ```
 
-You can also create collapsible content, for that we will need keywords such as `collapse, navbar-collapse, id`.
+You can also create collapsible content, for that we will need keywords such as `collapse, navbar-collapse, id`. There are various classes that may be used like `navbar-toggler, navbar-toggler-icon`.
+
+```
+<button class="navbar-toggler" type="button" data-toggle="collapse" data-target="#myTogglerNav" 
+aria-controls="myTogglerNav" aria-expanded="false" aria-label="Toggle navigation">
+<span class="navbar-toggler-icon"></span>
+</button>
+
+<div class=*collapse navbar-collapse" id="myTogglerNav">
+  <div class="navbar-nav">
+  ...
+  </div>
+</div>
+```
+
+You can also create a button in bootstrap using the `btn` class, where you can specify the button size with `btn-SIZ` and `SIZ` can be any of `sm, lg`.
