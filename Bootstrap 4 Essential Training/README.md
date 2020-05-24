@@ -158,3 +158,55 @@ There are other ways to control the position of elements, aside from using the g
   ...
 </div>
 ```
+You can specify the direction as : `flex(-BP)(-DIR)(-reverse)`, and `DIR` can either be `row, column`, similarly we have `flex(-BP)-WRP(-reverse)` where `WRP` can be either `wrap, nowrap`. We can stack elements in a column as : `<div class="d-flex flex-sm-column">...</div>`. If you want to align all the elements together on the left we have : `<div class="d-flex flex-wrap align-content-start">...</div>`. Another way of writing is :
+
+```
+<div class="clearfix">
+  <div class="item float-sm-left">Item 1</div>
+  ...
+</div>
+```
+
+You can add spacing as follows : `p(SID)-BP-(N)SIZ`. where SID can be `t,r,b,l,x,y`, and SIZ can be any of 0 to 5 or auto, for the padding. When this concerns the margin we have `m(SID)-BP-(N)SIZ`. The N means a negative value. 
+
+You can also change the visibility of the elements by using either the `visible` or `invisible` classes. You can also write `class="d-sm-none"`. You can also have different sizing of elements as follows : `SIZ(-AMT)` where `SIZ` can be `w,h,mw,mh,vw,vh,min-vw, min-vh` and `AMT` can be `25, 50, 75, 100, auto`. Where vw is viewport width and vh is viewport height, w just means width of the parent and h means height of the parent. You can specify the border as follows : `BORDER(-SID)(-COL)(-SIZ)` where `SID` takes values in `top, right bottom, left`, `COL` takes values in `primary, secondary, success, danger, warning, info, light, dark, white` and `SIZ` can be any of `0, sm, lg`. For example:
+
+```
+<style>
+  .item {
+    width : 150px;
+    height : 150px;
+    display : inline-block;
+    margin : 10px;
+    background : #f5f5f5;
+    border : 3px solid yellowgreen;
+  }
+</style>
+
+<div class="container">
+  <div class="item border border-primary"></div>
+  <div class="item border-0 "></div>
+</div>
+``` 
+
+Another important component aside from the grid are the navigation components : the navs, the tabs, pills and navbars. The classes related are : `nav, nav-item, nav-link, active, disabled, nav-pills, nav-tabs, nav-fill, nav-justified, flex-column`. An example is :
+
+```
+<nav class="nav nav-tabs justify-content-center">
+  <a class="nav-item nav-link active">Link 1</a>
+  ...
+</nav>
+```
+Instead of `nav-tabs` you can write `nav-pills`. Instead of writing `justify-content-center` you can write `nav-justified` or `nav-fill` or `flex-column` or `flex-sm-row`. We can control when the navbar will expand by typing : `navbar-expand(-BP)` where `BP` can be any of `sm, md, lg, xl`. You can specify some colors of the navbbar using `bg-COLOR`, `navbar-light`, `navbar-dark`. An example is :
+
+```
+<nav class="navbar bg-light navbar-light navbar-expand-sm"
+style="background-color: red">
+  <div class="container">
+    <div class="navbar-nav">
+      <a class="nav-item nav-link" href="#">Home</a>
+      ...
+    </div>
+ </div>
+</nav>
+```
