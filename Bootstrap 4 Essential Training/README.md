@@ -239,3 +239,4 @@ You can have forms in web pages. The keywords used are : `form-inline, form-cont
   <button class="btn btn-outline-light" type="submit">Go</button>
 </form>
 ```
+
