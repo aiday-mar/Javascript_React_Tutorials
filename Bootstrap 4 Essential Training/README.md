@@ -308,3 +308,40 @@ The style element above changes the separator between the breadcrumb items, wher
   <div> Some text </div>
 </section>
 ```
+The jumobotron is a component for a highlighted piece of content and it is commonly used at the top of many websites. For that you need to use the `jumbotron` container and the `jumbotron-fluid` items. We have the following code : 
+
+```
+<header class="jumbotron jumbotron-fluid mt-4">
+  <div class="container">
+    <div class="display-2 mb-4"> Our mission </div>
+    <p class="lead"> The paragraph </p>
+  </div>
+</header>
+```
+
+There is the `table` class that can be used to create tables, along with `table-dark`, `table-striped`, `table-bordered`, `table-borderless`, `table-hover`. You can change the color of the table header by writing : `thead-light`, `thead-dark`. You can also write `table-COLOR` for the color of the border and use `bg-color` for the color of the background of the cell. You can size the tables a follows with `table-sm, table-responsive(-BP)`. An example is as follows :
+
+```
+<table class="table table-hover table-responsive">
+  <thead><tr><th scope="col">header 1</th>...</tr></thead>
+  <tbody>
+    <tr><th scope="row"> 1 </th> ...
+  </tbody>
+</table>
+```
+
+You can also make card looking views using the following classes `card, card-body, card-text, card-title, card-subtitle, card-link, card-img`. You can also assign specific colors such as `bg-COLOR, border-COLOR, text-COLOR`. An example is :
+
+```
+<div class="container">
+  <section class="card mb-5">
+    <div class="card-body">
+      <img class="card-img img-fluid" src="some-link">
+      <h2 class="card-title">Title</h2>
+      <h5 class="card-subtitle">Subtitle</h5>
+      <p class="card-text">The text</p>
+      <a class="card-link" href="#">Link</a>
+    </div>
+  </section>
+</div>
+```
