@@ -255,4 +255,56 @@ aria-controls="myTogglerNav" aria-expanded="false" aria-label="Toggle navigation
 </div>
 ```
 
-You can also create a button in bootstrap using the `btn` class, where you can specify the button size with `btn-SIZ` and `SIZ` can be any of `sm, lg`.
+You can also create a button in bootstrap using the `btn` class, where you can specify the button size with `btn-SIZ` and `SIZ` can be any of `sm, lg`. In a similar way you may specify the color of the button as follows `btn-COLOR`, and you can also define the outline as follows `btn-outline-COLOR`. The `btn-block` can be used so that the button occupies the entire width of the container. It doesn't matter whether the HTML tag is a link, a button or an input, the tag still looks like a button when you append the right class.
+
+To group buttons together you can use the `btn-group` class. There is also a vertical version option for button groups `btn-group-vertical`. There is also a class called `basges` that can be used in conjunction with `badge-pill` and `badge-COLOR`. An example of the use is :
+
+```
+<span class="badge badge-danger badge-pill"> This is a badge </span>
+```
+You can also create a progress bar using the `progress` container, which you use with the `progress-bar` item. You can also make a striped bar using `progress-bar-striped`. This progress bar can be animated with `progress-bar-animated`. You can also assign the role of the progressbar with `role="progressbar"` and you can use the keyword `aria-valuenow`, `aria-valuemin` which holds the minimum value and `aria-valuemax` which holds the maximal value. This can be coded as follows :
+
+```
+<div class="progress">
+  <div class="progress-bar bg-success progress-bar-striped progress-bar-animated" role="progressbar" style="width:73%; height: 40px;">73%</div>
+</div>
+```
+ 
+The above gives a bar which is 73% of the container, and the text "73%" appears too in the progress bar. You can even add progress bars one on top of each other as follows :
+
+```
+<div class="progress">
+  <div class="progress-bar bg-info" style="width:15%"></div>
+  <div class="progress-bar bw-warning" style="width:30%"></div>
+</div>
+```
+We have list groups which can be specified with the `list-group` containers, `list-group-item` items, and the `list-group-item-COLOR` property and the `list-group-horizontal(-BP)`. An example is :
+
+```
+<ul class="list-group mb-3">
+  <li class="list-group-item lit-group-item-action">Item 1</li>
+  ...
+</ul>
+```
+You cana also use `breadcrumb`s in the navigation along with `breadcrumb-item`. An example is as follows :
+
+```
+<style>
+  .breadcrumb-item+.breadcrumb-item::before {
+    content: '|'
+  }
+</style>
+
+<nav class="breadcrumb">
+  <a class="breadcrumb-item" href="#">Home</a>
+  <span class="breadcrumb-item active">Nutrition</span>
+</nav>
+```
+The style element above changes the separator between the breadcrumb items, where the + means we are changing the style for the elements after the first element. You can also add shadow classes using the following keywords : `shadow-none, shadow-sm, shadow, shadow-lg`. An example is as follows :
+
+```
+<section class="border my-4 p-3 shadow">
+  <h4>Header</h4>
+  <div> Some text </div>
+</section>
+```
