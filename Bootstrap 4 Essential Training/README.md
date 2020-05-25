@@ -340,7 +340,10 @@ You can also make card looking views using the following classes `card, card-bod
       <h2 class="card-title">Title</h2>
       <h5 class="card-subtitle">Subtitle</h5>
       <p class="card-text">The text</p>
-      <a class="card-link" href="#">Link</a>
+    </div>
+    <div class="list-group list-group-flush">
+      <a class="list-group-item" href="#">About</a>
+      ...
     </div>
   </section>
 </div>
