@@ -348,3 +348,27 @@ You can also make card looking views using the following classes `card, card-bod
   </section>
 </div>
 ```
+You can also group the cards as follows `car-group`. You can create decks using `card-deck`:
+
+```
+<div class="container">
+  <div class="card-group">
+    <section class="card mb-5">
+    </section>
+    ...
+  </div>
+</div>
+```
+
+When you instead use `card-columns` the cards are in one column and the top of a card is aligned to the bottom of the one above. Or you can use the grid as follows :
+
+```
+<div class="container">
+  <div class="row row-cols-1 row-cols-sm-2 row-cols-md-3 row-cols-lg-4">
+    <div class="col">
+      <section class="card mb-5"></section>
+    </div>
+    ...
+  </div>
+</div>
+```
