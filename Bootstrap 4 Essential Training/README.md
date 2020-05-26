@@ -569,3 +569,27 @@ We can also use collapse and accordion elements. Accordions are groups of collap
 </div>
 ```
 
+Modals show up as an overlay on the top of the page. Modals use a button or a link, along with an ID or a `data-target` class, as well as the `data-toggle="modal"` class. We should also use the `modal` class. The `modal-dialog` is used to create additional spacing, and you can use the `modal-content` for the main content of the modal. You can also use the `modal-header`, and the `modal-body` is where you put the main content. There is also an optional footer `modal-footer`. There are other options like `modal-title`, `modal-dialog-centered`, `modal-dialog-scrollable`, `data-dismiss="modal"`. An example is :
+
+```
+<button type="button" class="btn btn-primary mt-4" data-toggle="modal" data-target="#servicesmodal">More Info</button>
+
+<div class="modal fade" id="servicesmodal">
+  <div class="modal-dialog">
+    <div class="modal-content">
+      <div class="modal-header">
+        <h5 class="modal-title">Pest control</h5>
+        <button type="button" class="close"
+        data-dismiss="modal" aria-label="close">
+          <span aria-hidden="true">&times;</span>
+        </button>
+      </div>
+      <div class="modal-body">
+        <p> Some test </p>
+      </div>
+      <div class="modal-footer">
+        <button type="button" class="btn btn-secondary" data-dismiss="modal">Back</button>
+    </div>
+  </div>
+</div>
+```
