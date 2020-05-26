@@ -383,16 +383,37 @@ An example of the use of the `media` class is :
   </div
 </section>
 ```
-You can also use forms with `form-group` and `form-text`, `form-control`, `form-control-label`, `form-control-file`.
+You can also use forms with `form-group` and `form-text`, `form-control`, `form-control-label`, `form-control-file`, `form-check`, `form-check-label`, `form-check-input`, `form-check-inline`.
 
 ```
 <form>
-  <fieldset>
+  <fieldset class="form-group">
     <legend>Pet Info</legend>
-    <div>
-      <label for="ownername">Owner name</label>
-      <input type="text" id="ownername" placeholder="Your name">
+    <div class="form-group">
+      <label class="form-control-label" for="ownername">Owner name</label>
+      <input class="form-control" type="text" id="ownername" placeholder="Your name">
     </div>
   </fieldset>
 </form>
+```
+
+There is also similar code for the case when we have checkboxes.
+
+```
+<div class="form-check form-check-inline">
+  <label class="form-check-label">
+    <input class="form-check-input" type="checkbox">Option 1</input>
+  </label>
+</div>
+...
+```
+
+You can also change the sizes of the forms with `form-control-sm` and `form-control-lg`. We can also use the keywords `has-COLOR` and `form-control-COLOR`. An example is :
+
+```
+<div class="form-group has-success form-inline">
+  <label class="form-control-label" for="owneremail">Email</label>
+  <input class="form-control mx-sm-2 form-control-success" type"email">Your email</input>
+  <small class="form-text text-muted" id="emailHelp">We'll never share your email</small>
+</div>
 ```
