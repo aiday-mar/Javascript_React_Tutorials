@@ -547,3 +547,25 @@ aria-haspop="true" aria-expanded="false">
 <span class="sr-only">Toggle Dropdown</span>
 </button>
 ```
+We can also use collapse and accordion elements. Accordions are groups of collapses. To set up a collapse, you create a link or a button that activates the collapse element. You can also add a `data-toggle="collapse"` and the ID or the `data-target`. Accordions require a container, it should contain the `show` class and the `dropdown-menu` class, and the `card` class. We include below an example of a set of cards that are collapsible.
+
+```
+<div id="servicesaccordion" role="tablist" aria-multiselectable="true">
+  
+  <div class="card">
+    <div class="card-header" role="tab" id="groomingheading">
+      <h5 class="mb-0">
+        <a data-toggle="collapse" data-parent="servicesaccordion" 
+        href="#grooming" aria-expanded="true" aria-controls="grooming">Grooming</a>
+      </h5>
+    </div>
+    
+    <div id="grooming" class="collapse show" role="tabpanel" aria-labbeledby="groomingheading">
+      <div class="card-block">
+        <p> Some collapsible text </p>
+      </div>
+    </div>
+  </div>
+</div>
+```
+
