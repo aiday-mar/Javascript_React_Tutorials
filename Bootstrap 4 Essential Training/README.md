@@ -453,4 +453,29 @@ You can create input elements using the following classes `input-group, input-gr
   </div>
 </div>
 ```
-You can have custom controls `custom-TYP` where `TYP` can be any of `select(-sm)(-lg), radio, checkbox, switch, range, file-input`. Or we can use the following classes `custom-control-label, custom-control`.
+You can have custom controls `custom-TYP` where `TYP` can be any of `select(-sm)(-lg), radio, checkbox, switch, range, file-input`. Or we can use the following classes `custom-control-label, custom-control, custom-control-input`. An example is :
+
+```
+<div class="custom-control custom-checkbox">
+  <input class="custom-control-input" type="checkbox" id="input1">
+  <label class="custom-control-label" for="input1">Input 1</label>-
+</div>
+```
+You can also have `custom-switch` instead of `custom-checkbox`. Here you can also have a range as follows :
+
+```
+<div class="form-group">
+  <label for="happinesslevel">Level of happiness</label>
+  <input type="range" class="custom-range" min="0" max="10" id="happinesslevel">
+</div>
+```
+You can also make a tab for uploading files as follows :
+
+```
+<div class="form-group">
+  <div class="custom-file">
+    <input type="file" class="custom-file-input" id="petphoto">
+    <label class="custom-file-label" for="petphoto">Upload photo</label>
+  </div>
+</div>
+```
