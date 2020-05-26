@@ -479,3 +479,22 @@ You can also make a tab for uploading files as follows :
   </div>
 </div>
 ```
+
+Tooltips are used by writing for example `data-toggle="tooltip"`. Tooltips can be configured with a data attribute or with JavaScript. You can activate the tooltip with JavaScript as follows :
+
+```
+$(function () {
+  $('[data-toggle = "tooltip" ]').tooltip({ OPTIONS })
+})
+```
+
+The HTML would be as follows :
+
+```
+<div class="tooltip bs-tooltip-top" role="tooltip">
+  <div class="arrow"></div>
+  <div class="tooltip-inner">
+    Some tooltip text !
+  </div>
+</div>
+```
