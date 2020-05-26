@@ -383,3 +383,16 @@ An example of the use of the `media` class is :
   </div
 </section>
 ```
+You can also use forms with `form-group` and `form-text`, `form-control`, `form-control-label`, `form-control-file`.
+
+```
+<form>
+  <fieldset>
+    <legend>Pet Info</legend>
+    <div>
+      <label for="ownername">Owner name</label>
+      <input type="text" id="ownername" placeholder="Your name">
+    </div>
+  </fieldset>
+</form>
+```
