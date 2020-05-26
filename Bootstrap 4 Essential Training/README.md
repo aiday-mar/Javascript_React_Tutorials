@@ -372,3 +372,14 @@ When you instead use `card-columns` the cards are in one column and the top of a
   </div>
 </div>
 ```
+An example of the use of the `media` class is :
+
+```
+<section class="media mb-4">
+  <img class="d-flex align-self-center mr-3 img-fluid rounded w-25" src="#">
+  <div class="media-body">
+    <h2>Header</h2>
+    <p>Text<p>
+  </div
+</section>
+```
