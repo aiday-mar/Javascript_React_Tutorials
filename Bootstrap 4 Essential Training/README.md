@@ -453,3 +453,4 @@ You can create input elements using the following classes `input-group, input-gr
   </div>
 </div>
 ```
+You can have custom controls `custom-TYP` where `TYP` can be any of `select(-sm)(-lg), radio, checkbox, switch, range, file-input`. Or we can use the following classes `custom-control-label, custom-control`.
