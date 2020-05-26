@@ -417,3 +417,39 @@ You can also change the sizes of the forms with `form-control-sm` and `form-cont
   <small class="form-text text-muted" id="emailHelp">We'll never share your email</small>
 </div>
 ```
+There are classes that you can use such as `form-row` and `col-auto`, `col-form-label`.
+
+```
+<div class="form-group row">
+  <label class="col-form-label text-md-right col-md-2" for="ownername">Owner</label>
+  <div class="col-md-10">
+    <input class="form-control" type="text" id="ownername" placeholder"Your name">
+  </div>
+</div>
+```
+As well as :
+
+```
+<div class="form-group row">
+  <div class="offset-md-2 col-auto">
+    <button class="btn btn-primary" type="submit">Submit</button>
+  </div>
+</div>
+```
+
+You can create input elements using the following classes `input-group, input-group-prepend, input-group-append, input-group-text, aria-label, sr-only`. We have an example below :
+
+```
+<div class="form-group">
+  <label class="form-control-label" for="donationamt">Donation amount</label>
+  <div class="input-group">
+    <div class="input-group-prepend">
+      <div class="input-group-text">
+        <input type="checkbox" id="confirm-donation" checked aria-label="checkbox for confirming donation">
+      </div>
+      <div class="input-group-text">$</div>
+    </div>
+    <input type="text" class="form-control" id="donationamt" placeholder="Amount">
+  </div>
+</div>
+```
