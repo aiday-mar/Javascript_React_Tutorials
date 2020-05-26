@@ -485,7 +485,7 @@ Tooltips are used by writing for example `data-toggle="tooltip"`. Tooltips can b
 ```
 $(function () {
   $('[data-toggle = "tooltip" ]').tooltip({ OPTIONS })
-})
+});
 ```
 
 The HTML would be as follows :
@@ -497,4 +497,53 @@ The HTML would be as follows :
     Some tooltip text !
   </div>
 </div>
+```
+Where we can use `placement, trigger, html`. Example : `<a href="#" data-toggle="tooltip" data-placement="top" data-html="true">`. You can also use pop overs a follows : `data-toggle="popover", title="text", data-content="content"`. In a similar way you activate this using jQuery :
+
+```
+<button type="button" class="btn btn-info" data-toggle="popover" title="Checkups" data-trigger="hover"
+data-content="Our standard checkups offer many services"> Checkup Info </button>
+
+$(function () {
+  $('[data-toggle="popover"]').popover({
+    placement : "top"
+  })
+})
+```
+You can create alerts as follows using the keywords : `alert, alert-COLOR, alert-heading, alert-link, alert-dismissible, fade, show`. An example is as follows :
+
+```
+<div class="alert alert-info alert-dismissible fade show"> 
+  <button type="button" class="close" data-dismiss="alert">
+  <span aria-hidden="true">&times;</span>
+</div>
+```
+
+We also have a dropdown class for which we can use the following keywords : `dropdown, dropdown-toggle, dropdown-menu, dropdown-item, dropdown-header, dropdown-divider, disabled, dropup, dropdown-menu-right, dropdown-toggle-split`. An example is :
+
+```
+<div class="dropdown">
+  <button class="btn btn-primary dropdown-toggle" type="button"
+  id="dropdownMenuButton" data-toggle="dropdown" aria-haspopup="true"
+  aria-expanded="false">
+  Services
+  </button>
+  
+  <div class="dropdown-menu" aria-labelledby="dropdownMenuButton">
+    <div class="dropdown-header">Serice options</div>
+    <a class="dropdown-item" href="#">Option 1</a>
+    <div class="dropdown-divider"></div>
+    <a class="dropdown-item" href="#">Other</a>
+  </div>
+</div>
+```
+We can also make the toggle button and the button with the text separate as follows : 
+
+```
+<button type="button" class="btn btn-primary">Sercices</button>
+<button class="btn btn-primary dropdown-toggle" type="button"
+id="dropdownMenuButton" data-toggle="dropdown"
+aria-haspop="true" aria-expanded="false">
+<span class="sr-only">Toggle Dropdown</span>
+</button>
 ```
