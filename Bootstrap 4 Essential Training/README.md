@@ -720,3 +720,15 @@ About</button>
   });
 </script>
 ```
+
+We can edit the pagination as follows. We need the classes `pagination, page-item, active, disabled, page-link`. We have the following code that also draws arrows on either side of the list :
+
+```
+<nav class="mt-5" aria-label="page navigation">
+  <ul class="pagination justify-content-center">
+    <li class="page-item"><a class="page-link" href="#"> < </a></li>
+    ...
+    <li class="page-item"><a class="page-link" href="#"> > </a></li>
+  </ul>
+</nav>
+```
