@@ -593,3 +593,42 @@ Modals show up as an overlay on the top of the page. Modals use a button or a li
   </div>
 </div>
 ```
+To set up a carousel you create a container div and give it a class of carousel. You can use the following classes `carousel, slide, carousel-fade, carousel-inner, carousel-item, active, d-blocl, w-100, carousel-caption, ride, interval, pause, touch, keyboard, wrap, carousel-control-(prev)(next), carousel-control-(prev)(next)-icon, carousel-indicators, data-target="target", data-slide-to="#", `. An example is :
+
+```
+<div class="carousel slide carousel-fade" id="featured" data-ride="carousel">
+  <ol class="carousel-indicators">
+    <li data-target="#featured" data-slide-to="0"></li>
+    <li data-target="#featured" data-slide-to="1"></li>
+    <li data-target="#featured" data-slide-to="2"></li>
+  </ol>
+  <div class="carousel-inner">    
+    <div class="carousel-item">
+      <img class="d-block w-100" src="images/carousel-lifestyle.jpg" alt="lifestyle">
+    </div>
+    <div class="carousel-item">
+      <img class="d-block w-100" src="images/carousel-fish-jpg" alt="Mission">
+      <div class="carousel-caption d-none d-mb-block">
+        <h3>Some header</h3>
+        <p> Some paragraph</p>
+      </div>
+    </div>
+    <div item="carousel-item active">
+      <img class="d-block w-100" src="images/carousel-vacations.jpg" alt="lifestyle">  
+    </div>
+  </div>
+  
+  <a class=*carousel-control-prev" href="#featured" role="button" data-slide"prev">
+    <span class="carousel-control-prev-icon" aria-hidden="true">
+      <span class="sr-only">Previous</span>
+    </span>
+  </a>
+  <a class="carousel-control-next" href="#featured" role="button" data-slide="next">
+    <span class="carousel-control-next-icon" aria-hidden="true">
+      <span class="sr-only">Next</span>
+    </span>
+  </a>
+</div>
+```
+
+Scrollspy is a component that allows you to keep track of the scroll of the page.
