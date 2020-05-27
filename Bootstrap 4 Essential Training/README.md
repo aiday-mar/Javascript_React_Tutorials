@@ -744,3 +744,10 @@ Stretched links can be implemented with the following class `stretched-link`. An
   </div>
 </div>
 ```
+You can also embed pieces of code from other websites. For this you can use the following classes `embed-responsive, embed-responsive-SIZ, embed-responsive-item`. For example:
+
+```
+<div class="embed-responsive embed-responsive-16by9">
+  <iframe class="embed-responsive-item" width="560" height="315" src="youtube video link">
+</div>
+```
