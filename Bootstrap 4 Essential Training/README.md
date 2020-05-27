@@ -694,3 +694,29 @@ Toasts are notifcations that can appea on the site. For this you use the followi
   });
 </script>
 ```
+You can also create spinners using the `spinner, spinner-TYP(-SIZ)` classes, where `TYP` can be any of `border, grow`, and you can also use `text-COL`.
+
+```
+<button id="showToast" class="btn btn-primary mx-auto">
+  <span id="mySpinner" class="d-none">
+    <span class="spinner-border spinner-grow-sm text-light" role="status" aria-hidden="true"></span>
+    <span class="sr-only">Loading...</span>
+  </span>
+About</button>
+
+<script>
+  $(document).ready(function() {
+    $("#showToast").click(function() {
+      $('.toast').toast('show');
+      
+      $('#myToast').on('shown.bs.toast', function() {
+        $('#mySpinner').removeClass('d-none');
+      });
+      
+      $('#myToast').on('hidden.bs.toast', function() {
+        $('#mySpinner').addClass('d-none');
+      });
+    });
+  });
+</script>
+```
