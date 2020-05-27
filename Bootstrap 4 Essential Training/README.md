@@ -732,3 +732,15 @@ We can edit the pagination as follows. We need the classes `pagination, page-ite
   </ul>
 </nav>
 ```
+
+Stretched links can be implemented with the following class `stretched-link`. An example is :
+
+```
+<div class="card">
+  <div class="card-body">
+    <h2 class="card-title"> Our mission </h2>
+    <p class="card-text"> Some text </p>
+    <a href="#" class="btn btn-primary stretched-link">More info</a>
+  </div>
+</div>
+```
