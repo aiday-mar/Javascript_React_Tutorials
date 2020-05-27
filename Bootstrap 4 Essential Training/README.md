@@ -631,4 +631,66 @@ To set up a carousel you create a container div and give it a class of carousel.
 </div>
 ```
 
-Scrollspy is a component that allows you to keep track of the scroll of the page.
+Scrollspy is a component that allows you to keep track of the scroll of the page. The main data-atttributes are : `data-spy="scroll", position: relative, data-target="ID", fixed-top, data-offset`. We have an example below of the menu bar with the scrolling effect :
+
+```
+<body data-spy="scroll" data-target="#navbar-site" data-offset="80">
+  
+  <nav id="navbar-site" class="navbar navbar-dark bg-dark navbar-expand-sm fixed-top">
+    <div class="container">
+      <ul class="navbar-nav">
+        <li class="nav-item"><a class="nav-link" href="#mission">Mission</a></li>
+        ...
+      </ul>
+    </div>
+  </nav>
+  
+</body>
+
+<script>
+  $(function() {
+    var topoffset = 70;
+    
+    $('.navbar-nav a').click(function () {
+      if (location.pathname.replace(/^\//, '') ===
+      this.pathname.replace(/^\//, '') &&
+      location.hostname === this.hostname) {
+        var target = $(this.hash);
+        target = target.length ? target : $('[name=' + this.hash.slice(1) + ']');
+        if (target.length) {
+          $('html, body').animate({
+            scrollTop : target.offset().top-topoffset
+          }, 500);
+          return false;
+        }
+      }
+    });
+  });
+</script>
+```
+
+Toasts are notifcations that can appea on the site. For this you use the following styles `toast, toast-header, toast-body, animation, autohide, delay,`. We do the setup for the toast as follows : `data-dismiss="toast"`. An example is :
+
+```
+<div class="toast" role="alert" aria-live="assertive" aria-atomic="true" data-delay="5000" style="position:absolute; top: 1rem; right: 1rem;">
+  <div class="toast-header">
+    <strong class="mr-auto">About</strong>
+    <button type="button" class="close" data-dismiss="toast" aria-label="Close">
+      <span aria-hidden="true">&times;</span>
+    </button>
+  </div>
+  <div class="toast-body">
+    The content
+  </div>
+</div>
+
+<button id="showToast" class="btn btn-primary mx-auto">About</button>
+
+<script>
+  $(document).ready(function() {
+    $("#showToast").click(function() {
+      $('.toast').toast('show');
+    });
+  });
+</script>
+```
